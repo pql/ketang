@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>珠峰课堂</title>
+</head>
+<body>
+    <script>
+        (function(){
+            function refreshRem() {
+                // 如果说屏幕宽度是750px的话，1rem = 100px iphone6的话  1rem=50px
+                // 16px 它是chrome浏览器的默认值，不好计算 100px 容易计算
+                document.documentElement.style.fontSize = document.documentElement.clientWidth / 750 * 100 + 'px';
+            }
+            refreshRem();
+            window.addEventListener('resize', refreshRem, false);
+        })();
+    </script>
+    <div id="root"></div>
+</body>
+</html>
