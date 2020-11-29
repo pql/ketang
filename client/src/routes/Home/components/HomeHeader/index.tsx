@@ -3,7 +3,7 @@ import './index.less';
 import { BarsOutlined } from '@ant-design/icons';
 import classnames from 'classnames';
 import { Transition } from 'react-transition-group';
-const logo = require('../../../../assets/images/logo.jpg');
+import logo from '@/assets/images/logo.png';
 // 如果是用require加载的话，返回值的default属性才是那个图片地址
 // 非要用import如何解决?
 const duration = 600; // 动画的持续时间
@@ -13,14 +13,21 @@ const defaultStyle:CSSProperties = {
     opacity: 0,
     display: 'none'
 }
+
+interface TransitionStyles {
+    entering: CSSProperties;
+    entered: CSSProperties;
+    exiting: CSSProperties;
+    exited: CSSProperties;
+}
+
 // 在不同的阶段，给不同的样式
 // 动画怎么来的？
-const transitionStyles = {
-    entering: { opacity: 0, display: 'none' },
-    entered: { opacity: 1, display: 'block' },
-    exiting: { opacity: 0, display: 'none' },
-    exited: { opacity: 0, display: 'none'  },
-    unmounted: { opacity: 0, display: 'none'  }
+const transitionStyles : TransitionStyles = {
+    entering: { opacity: 1 },
+    entered: { opacity: 1 },
+    exiting: { opacity: 0 },
+    exited: { opacity: 0 }
 }
 
 interface Props {
@@ -39,12 +46,12 @@ function HomeHeader(props: Props) {
     return (
         <header className="home-header">
             <div className="logo-header">
-                <img src={logo.default} />
+                <img src={logo} />
                 <BarsOutlined onClick={() => setIsMenuVisible(!isMenuVisible)} />
             </div>
             <Transition in={isMenuVisible} timeout={duration}>
                 {
-                    (state) => (
+                    (state: keyof TransitionStyles) => (
                         <ul 
                             className="category" 
                             onClick={setCurrentCategory}

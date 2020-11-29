@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { HomeOutlined,ShoppingCartOutlined, UserOutlined } from '@ant-design/icons';
 import './index.less';
 interface Props {

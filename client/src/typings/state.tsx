@@ -4,9 +4,26 @@ export interface HomeState {
     currentCategory: string;
 }
 
-export interface MineState {}
+export interface MineState {
 
-export interface ProfileState {}
+}
+
+// 当前的用户信息
+interface User {
+    username: string;
+    email: string;
+    avatar: string;
+}
+export enum LOGIN_TYPES {
+    UN_VALIDATE = 'UN_VALIDATE', // 尚未验证登录状态
+    LOGINED = 'LOGINED',    // 已经登录
+    UNLOGINED = 'UNLOGINED' // 的确没有登录
+}
+export interface ProfileState {
+    loginState: LOGIN_TYPES;
+    user: User | null;
+    error: string | null;
+}
 
 export interface CombinedState {
     home: HomeState;
